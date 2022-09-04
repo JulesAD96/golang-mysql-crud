@@ -56,7 +56,7 @@ func Index(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// send response in template
-	tmpl.ExecuteTemplate(w, "Index", res)
+	tmpl.ExecuteTemplate(w, "index", res)
 	defer db.Close()
 }
 
@@ -85,12 +85,12 @@ func Show(w http.ResponseWriter, r *http.Request) {
 
 	}
 	// send employe in template
-	tmpl.ExecuteTemplate(w, "Show", emp)
+	tmpl.ExecuteTemplate(w, "show", emp)
 	defer db.Close()
 }
 
 func New(w http.ResponseWriter, r *http.Request) {
-	tmpl.ExecuteTemplate(w, "New", nil)
+	tmpl.ExecuteTemplate(w, "new", nil)
 }
 
 func Edit(w http.ResponseWriter, r *http.Request) {
@@ -112,7 +112,7 @@ func Edit(w http.ResponseWriter, r *http.Request) {
 		emp.Name = name
 		emp.City = city
 	}
-	tmpl.ExecuteTemplate(w, "Edit", emp)
+	tmpl.ExecuteTemplate(w, "edit", emp)
 	defer db.Close()
 }
 
@@ -164,6 +164,7 @@ func Delete(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("static"))))
 	log.Println("Server started on http://localhost:8080")
 
 	http.HandleFunc("/", Index)

@@ -1,0 +1,10 @@
+{{ define "show" }}
+  {{ template "header" }}
+    <div class="p-3">
+      <h2> Register {{ .Id }} </h2>
+      <p>Name: {{ .Name }}</p>
+      <p>City:  {{ .City }}</p>
+      <a href="/edit?id={{ .Id }}">Edit</a></p>
+    </div>
+  {{ template "footer" }}
+{{ end }}
